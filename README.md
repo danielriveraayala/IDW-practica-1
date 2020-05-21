@@ -6,11 +6,11 @@ Ejecutar instalación con composer update | composer install
 php -S 0.0.0.0:8080 -t public/
 # vHost:
 <VirtualHost *:80>
-  ServerName  {name}
+  ServerName  {name}\n
   DocumentRoot {dir_project}
   <Directory {dir_project}>
     DirectoryIndex  index.php
     AllowOverride All
     Required all granted
   </Directory>
-</VirtualHost
+</VirtualHost>
