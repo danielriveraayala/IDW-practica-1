@@ -14,3 +14,6 @@ DocumentRoot /var/www/html/IDW-practica-1
     Required all granted
   </Directory>
 </VirtualHost>`
+## Conexion a base de datos
+El archivo de configuración para conectar a la base de datos se encuenta en:
+### config > autoload > local.php

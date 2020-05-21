@@ -38,7 +38,7 @@ return [
         ],
         'dashboard' => [
             [
-                'label' => '<i class="fas nav-icon fa-music"></i> <p>Album <i class="right fas fa-angle-left"></i></p>',
+                'label' => '<i class="fas nav-icon fa-music"></i> <p>Practica 1 (Album) <i class="right fas fa-angle-left"></i></p>',
                 'route' => 'dashboard/album',
                 'pages' => [
                     [
