@@ -1,0 +1,136 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+?>
+<?= $this->doctype() ?>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <?= $this->headTitle('Dashboard')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+    <?= $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+
+    <!-- Le styles -->
+    <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+        ->appendStylesheet($this->basePath('plugins/fontawesome-free/css/all.min.css'))
+        ->appendStylesheet('//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')
+        ->appendStylesheet($this->basePath('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css'))
+        ->appendStylesheet($this->basePath('plugins/icheck-bootstrap/icheck-bootstrap.min.css'))
+        ->appendStylesheet($this->basePath('plugins/jqvmap/jqvmap.min.css'))
+        ->appendStylesheet($this->basePath('css/adminlte.min.css'))
+        ->appendStylesheet($this->basePath('plugins/overlayScrollbars/css/OverlayScrollbars.min.css'))
+        ->appendStylesheet($this->basePath('plugins/daterangepicker/daterangepicker.css'))
+        ->appendStylesheet($this->basePath('plugins/summernote/summernote-bs4.css'))
+        ->appendStylesheet('//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700')
+    ?>
+
+    <!-- Scripts -->
+    <?= $this->headScript()
+        ->appendFile($this->basePath('plugins/jquery/jquery.min.js'))
+        ->appendFile($this->basePath('plugins/jquery-ui/jquery-ui.min.js'))
+        ->appendFile($this->basePath('plugins/bootstrap/js/bootstrap.bundle.min.js'))
+    ?>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <?= $this->navigation('Laminas\Navigation\default')->menu()->setPartial('partial/menu-default')->render() ?>
+        </ul>
+
+
+
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="<?= $this->url('home') ?>" class="brand-link">
+            <span class="brand-text font-weight-light">Dashboard</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <?php
+                    $avatar = $this->gravatar('danielriveraayala@gmail.com');
+                    echo $avatar->setAttributes(['class' => 'img-circle elevation-2'])->getImgTag();
+                    ?>
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">Daniel Rivera</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+
+                </ul>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <?= $this->content ?>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Version</b> 3.0.4
+        </div>
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<?= $this->inlineScript()
+    ->appendFile($this->basePath('plugins/chart.js/Chart.min.js'))
+    ->appendFile($this->basePath('plugins/sparklines/sparkline.js'))
+    ->appendFile($this->basePath('plugins/jqvmap/jquery.vmap.min.js'))
+    ->appendFile($this->basePath('plugins/jqvmap/maps/jquery.vmap.usa.js'))
+    ->appendFile($this->basePath('plugins/jquery-knob/jquery.knob.min.js'))
+    ->appendFile($this->basePath('plugins/moment/moment.min.js'))
+    ->appendFile($this->basePath('plugins/daterangepicker/daterangepicker.js'))
+    ->appendFile($this->basePath('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js'))
+    ->appendFile($this->basePath('plugins/summernote/summernote-bs4.min.js'))
+    ->appendFile($this->basePath('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'))
+    ->appendFile($this->basePath('js/adminlte.js'))
+    ->appendFile($this->basePath('js/pages/dashboard.js'))
+    ->appendFile($this->basePath('js/demo.js'))
+?>
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+</body>
+</html>

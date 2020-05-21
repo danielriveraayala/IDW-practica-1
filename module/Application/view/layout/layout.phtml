@@ -1,0 +1,73 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+?>
+<?= $this->doctype() ?>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <?= $this->headTitle('Ingenieria y Desarrollo en la Web')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+    <?= $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+
+    <!-- Le styles -->
+    <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+        ->appendStylesheet($this->basePath('plugins/fontawesome-free/css/all.min.css'))
+        ->appendStylesheet('//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')
+        ->appendStylesheet($this->basePath('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css'))
+        ->appendStylesheet($this->basePath('plugins/icheck-bootstrap/icheck-bootstrap.min.css'))
+        ->appendStylesheet($this->basePath('plugins/jqvmap/jqvmap.min.css'))
+        ->appendStylesheet($this->basePath('css/adminlte.min.css'))
+        ->appendStylesheet($this->basePath('plugins/overlayScrollbars/css/OverlayScrollbars.min.css'))
+        ->appendStylesheet($this->basePath('plugins/daterangepicker/daterangepicker.css'))
+        ->appendStylesheet($this->basePath('plugins/summernote/summernote-bs4.css'))
+        ->appendStylesheet('//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700')
+    ?>
+
+    <!-- Scripts -->
+    <?= $this->headScript() ?>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark mb-4" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand m-0" href="<?= $this->url('home') ?>">
+                <img class="img-fluid m-0 img-thumbnail" width="240px" src="<?= $this->basePath('img/unir.png') ?>" alt="Laminas">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <?= $this->navigation('Laminas\Navigation\default')->menu()->setPartial('partial/menu-default')->render() ?>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <?= $this->content ?>
+</div>
+<?= $this->inlineScript()
+    ->appendFile($this->basePath('plugins/jquery/jquery.min.js'))
+    ->appendFile($this->basePath('plugins/jquery-ui/jquery-ui.min.js'))
+    ->appendFile($this->basePath('plugins/bootstrap/js/bootstrap.bundle.min.js'))
+    ->appendFile($this->basePath('plugins/chart.js/Chart.min.js'))
+    ->appendFile($this->basePath('plugins/sparklines/sparkline.js'))
+    ->appendFile($this->basePath('plugins/jqvmap/jquery.vmap.min.js'))
+    ->appendFile($this->basePath('plugins/jqvmap/maps/jquery.vmap.usa.js'))
+    ->appendFile($this->basePath('plugins/jquery-knob/jquery.knob.min.js'))
+    ->appendFile($this->basePath('plugins/moment/moment.min.js'))
+    ->appendFile($this->basePath('plugins/daterangepicker/daterangepicker.js'))
+    ->appendFile($this->basePath('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js'))
+    ->appendFile($this->basePath('plugins/summernote/summernote-bs4.min.js'))
+    ->appendFile($this->basePath('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'))
+
+?>
+</body>
+</html>

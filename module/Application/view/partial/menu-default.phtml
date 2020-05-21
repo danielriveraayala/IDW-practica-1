@@ -1,0 +1,30 @@
+<?php
+foreach ($this->container as $page) {
+    $hasChildren = $page->hasPages();
+
+    if (!$hasChildren) {
+        ?>
+        <li class="nav-item <?= $page->isActive() ? 'active' : null ?>">
+            <a href="<?php echo $page->getHref(); ?>" class="nav-link"><?php echo $page->getLabel(); ?></a></li>
+        <?php
+    } else {
+        ?>
+        <li class="mb-1 mb-sm-0 nav-item dropdown <?= $page->isActive() ? 'active' : null ?>">
+            <a href="#" class="pl-3 pl-md-2 pl-sm-0 nav-link dropdown-toggle" role="button" data-toggle="dropdown">
+                <?php echo $page->getLabel(); ?> <span class="caret"></span>
+            </a>
+            <div class="dropdown-menu dropdown-primary">
+                <?php
+                foreach ($page->getPages() as $child) {
+                    ?>
+                    <a href="<?php echo $child->getHref(); ?>"
+                       class="dropdown-item"><?php echo $child->getLabel(); ?></a>
+                    <?php
+                }
+                ?>
+            </div>
+        </li>
+        <?php
+    }
+}
+?>
