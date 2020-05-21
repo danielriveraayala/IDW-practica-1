@@ -35,7 +35,7 @@
         ->appendFile($this->basePath('plugins/bootstrap/js/bootstrap.bundle.min.js'))
     ?>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed pb-5">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -77,11 +77,11 @@
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-
+                    <?= $this->navigation('Laminas\Navigation\dashboard')->menu()->setPartial('partial/menu-dashboard')->render() ?>
                 </ul>
             </nav>
         </div>
@@ -90,22 +90,13 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Main content -->
-        <section class="content">
+        <section class="content pt-3">
             <div class="container-fluid">
                 <?= $this->content ?>
             </div>
         </section>
         <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.0.4
-        </div>
-    </footer>
-
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->

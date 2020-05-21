@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="callout callout-info">
+            <p>La aplicación que vamos a construir es un sistema de inventario simple para mostrar qué álbumes poseemos.
+                La página principal enumerará nuestra colección y nos permitirá agregar, editar y eliminar albumes.
+                Vamos a
+                necesitar cuatro páginas en nuestro sitio web:</p>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Pagina</th>
+                    <th>Descripción</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Lista de albumes</td>
+                    <td>Esto mostrará la lista de álbumes y proporcionará enlaces para editarlos y eliminarlos. Además,
+                        se proporcionará un enlace para permitir agregar nuevos álbumes.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Agregar nuevo album</td>
+                    <td>Esta página proporcionará un formulario para agregar un nuevo álbum.</td>
+                </tr>
+                <tr>
+                    <td>Editar album</td>
+                    <td>Esta página proporcionará un formulario para editar un álbum.</td>
+                </tr>
+                <tr>
+                    <td>Elimiar un album</td>
+                    <td>Esta página confirmará que queremos eliminar un álbum y luego eliminarlo.</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>También necesitaremos almacenar nuestros datos en una base de datos. Solo necesitaremos una tabla con
+                estos campos:</p>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Nombre del campo</th>
+                    <th>Tipo</th>
+                    <th>¿Nulo?</th>
+                    <th>Notas</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>integer</td>
+                    <td>no</td>
+                    <td>primary key, auto-increment</td>
+                </tr>
+                <tr>
+                    <td>artist</td>
+                    <td>varchar(255)</td>
+                    <td>No</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>title</td>
+                    <td>varchar(255)</td>
+                    <td>No</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="callout callout-info">
+            <h4>Base de Datos</h4>
+            <code>
+                CREATE TABLE `album` (<br/>
+                `id` int NOT NULL,<br/>
+                `artist` varchar(255) NOT NULL,<br/>
+                `title` varchar(255) NOT NULL<br/>
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;<br/>
+            </code>
+            <code>
+                INSERT INTO `album` (`id`, `artist`, `title`) VALUES<br/>
+                (1, 'The Clash', 'Should I Stay or Should I Go'),<br/>
+                (2, 'Jame Brown', 'Get Up Offa That Thing'),<br/>
+                (3, 'ABBA', 'Dancing Queen'),<br/>
+                (4, 'The Knack', 'My Sharona'),<br/>
+                (5, 'Adele', '21'),<br/>
+                (6, 'Bruce Springsteen', 'Wrecking Ball (Deluxe)'),<br/>
+                (7, 'Lana Del Rey', 'Born To Die'),<br/>
+                (8, 'Gotye', 'Making Mirrors');<br/>
+            </code>
+            <code>
+                ALTER TABLE `album`<br/>
+                ADD PRIMARY KEY (`id`);<br/>
+            </code>
+            <code>
+                ALTER TABLE `album`<br/>
+                MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;<br/>
+                COMMIT;<br/>
+            </code>
+        </div>
+    </div>
+</div>

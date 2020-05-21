@@ -1,0 +1,38 @@
+<?php
+use Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger;
+$form = $this->form;
+echo $this->form()->openTag($form);
+?>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card card-outline card-primary">
+                <div class="card-header">
+                    <h4 class="card-title">Agregar nueva canción</h4>
+                </div>
+                <div class="card-body">
+                    <?= $this->flashMessenger()->render(FlashMessenger::NAMESPACE_SUCCESS,['alert','alert-success']); ?>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <?= $this->formLabel($form->get('artist')) ?>
+                                <?= $this->formElement($form->get('artist')) ?>
+                                <small class="text-danger text-sm"><?= $this->formElementErrors($form->get('artist')) ?></small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <?= $this->formLabel($form->get('title')) ?>
+                                <?= $this->formElement($form->get('title')) ?>
+                                <small class="text-danger text-sm"><?= $this->formElementErrors($form->get('title')) ?></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="<?= $this->url('dashboard/album') ?>" class="btn btn-secondary">Regresar</a>
+                    <?= $this->formElement($form->get('submit')) ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php echo $this->form()->closeTag($form) ?>

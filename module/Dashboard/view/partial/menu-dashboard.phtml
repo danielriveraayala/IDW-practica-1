@@ -1,0 +1,61 @@
+<?php
+/**
+ * @var Laminas\View\Helper\Navigation $this
+ */
+?>
+<?php
+
+foreach ($this->container as $page) {
+
+    $hasChildren = $page->hasPages();
+    if (!$hasChildren) { ?>
+        <li class="nav-item">
+            <a href="<?= $page->getHref(); ?>" class="nav-link <?= $page->isActive() ? 'active' : '' ?>">
+                <?php echo $page->getLabel(); ?>
+            </a>
+        </li>
+    <?php } else { ?>
+        <?php
+        $active = false;
+        $hasTreeview = false;
+        $subChildActive = false;
+        foreach ($page->getPages() as $child) {
+            if ($child->isActive()) {
+                $active = true;
+            }
+            if ($child->hasPages()) {
+                foreach ($child->getPages() as $subChild) {
+                    if ($subChild->isActive()) {
+                        $active = true;
+                        $subChildActive = true;
+                    }
+                }
+            }
+        }
+        $disabled = ($active) ? true : false;
+        ?>
+        <li class="nav-item has-treeview <?= $active ? 'menu-open' : '' ?>">
+            <a href="#" class="nav-link <?= $active ? 'active' : '' ?>">
+                <?php echo $page->getLabel(); ?>
+            </a>
+            <ul class="nav nav-treeview" style="background-color: rgb(43,43,43); border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+                <?php foreach ($page->getPages() as $child) { ?>
+                    <li class="nav-item">
+                        <a href="<?= $child->getHref(); ?>"
+                           class="nav-link <?= $child->isActive() ? ' active ' : '' ?>">
+                            <?= $child->getLabel(); ?>
+                        </a>
+                    </li>
+                    <?php if ($child->hasPages() && $subChildActive) {
+                        echo '<li class="nav-item">';
+                        foreach ($child->getPages() as $subChild) {
+                            $subChildActive = $subChild->isActive() ? 'active' : '';
+                            echo '<a href="#" class="nav-link ' . $subChildActive . '">' . $subChild->getLabel() . '</p></a>';
+                        }
+                        echo '</li>';
+                    } ?>
+                <?php } ?>
+            </ul>
+        </li>
+    <?php }
+} ?>

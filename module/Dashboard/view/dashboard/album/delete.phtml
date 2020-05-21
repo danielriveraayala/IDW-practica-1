@@ -1,0 +1,25 @@
+<?php
+/**
+ * @var album $rowToDelete
+ */
+
+use Dashboard\Entity\album;
+
+$rowToDelete = $this->rowToDelete;
+?>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="callout callout-warning">
+            <h4>Elimiar canción</h4>
+            <p>Estas a punto de elimiar una canción de tu repertorio</p>
+            <p><b>Artista:</b> <?= $rowToDelete->getArtist() ?></p>
+            <p><b>Titulo:</b> <?= $rowToDelete->getTitle() ?></p>
+            <hr/>
+            <a href="<?= $this->url('dashboard/album') ?>" class="btn btn-secondary text-white"
+               style="text-decoration: none">Regresar</a>
+            <a href="<?= $this->url('dashboard/album', ['action' => 'delete'], ['query' => ['deleteRow' => 'yes']]) ?>"
+               class="btn btn-danger text-white"
+               style="text-decoration: none">Eiminar</a>
+        </div>
+    </div>
+</div>

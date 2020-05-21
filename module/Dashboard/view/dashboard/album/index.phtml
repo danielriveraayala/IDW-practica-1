@@ -1,0 +1,53 @@
+<?php
+/**
+ * @var album $item
+ */
+use Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger;
+use Dashboard\Entity\album;
+
+$album = $this->album;
+?>
+<div class="card card-outline card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Lista de canciones</h3>
+    </div>
+    <div class="card-body">
+        <?= $this->flashMessenger()->render(FlashMessenger::NAMESPACE_SUCCESS,['alert','alert-success']); ?>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Artista</th>
+                <th>Titulo de la canción</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($album as $item) { ?>
+                <tr>
+                    <td><?= ucwords($item->getId()) ?></td>
+                    <td><?= ucwords($item->getArtist()) ?></td>
+                    <td><?= ucwords($item->getTitle()) ?></td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-cogs"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item"
+                                   href="<?= $this->url('dashboard/album', ['action' => 'edit', 'id' => $item->getId()]) ?>"><i
+                                            class="fas fa-edit"></i> Editar</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item"
+                                   href="<?= $this->url('dashboard/album', ['action' => 'delete', 'id' => $item->getId()]) ?>"><i
+                                            class="fas fa-trash text-danger"></i> Borrar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>

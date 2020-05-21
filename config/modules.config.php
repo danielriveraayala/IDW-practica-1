@@ -12,11 +12,21 @@
  * This should be an array of module namespaces used in the application.
  */
 return [
+    'Laminas\Mvc\Plugin\FlashMessenger',
+    'Laminas\Session',
+    'Laminas\I18n',
+    'Laminas\Cache',
+    'Laminas\Form',
+    'Laminas\InputFilter',
+    'Laminas\Filter',
+    'Laminas\Hydrator',
     'Laminas\Navigation',
     'Laminas\Paginator',
     'Laminas\Router',
     'Laminas\Validator',
     'Laminas\DeveloperTools',
+    'DoctrineModule',
+    'DoctrineORMModule',
     'Dashboard',
     'Application',
 ];
