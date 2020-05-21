@@ -1,5 +1,5 @@
-# IDW-practica-1
-Practica uno de la materia de Ingenieria y Desarrollo en la Web
+# Ingenieria y Desarrollo en la Web
+Repositorio para codigo fuente de practicas
 ## Instalación:
 `composer update | composer install`
 ## Ejecutar servidor (opcional)
