@@ -91,6 +91,7 @@ class AlbumController extends AbstractActionController
      */
     public function editAction()
     {
+        /*comentario*/
         if ($idToEdit = $this->params()->fromRoute('id', false)) {
             $this->editAlbumSession->id = $idToEdit;
             $this->redirect()->toRoute('dashboard/album', ['action' => 'edit']);
