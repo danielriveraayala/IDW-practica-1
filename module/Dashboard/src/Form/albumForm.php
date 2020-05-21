@@ -19,7 +19,7 @@ class albumForm extends Form implements ObjectManagerAwareInterface
     {
         $this->setObjectManager($entityManager);
         parent::__construct('album-form');
-        $this->setAttribute('action','post');
+        $this->setAttribute('method','post');
         $this->init();
 
     }
@@ -28,7 +28,7 @@ class albumForm extends Form implements ObjectManagerAwareInterface
     {
         $this->add([
             'type' => ObjectSelect::class,
-            'name' => 'genero',
+            'name' => 'genero_id',
             'options' => [
                 'label' => '<i class="fas fa-asterisk"></i> <b>Genero de la canción</b>',
                 'label_options' => [
@@ -45,7 +45,7 @@ class albumForm extends Form implements ObjectManagerAwareInterface
             ],
             'attributes' => [
                 'class' => 'form-control',
-                'id' => 'genero',
+                'id' => 'genero_id',
                 'required' => true,
             ],
         ]);

@@ -28,6 +28,12 @@ class album
     protected $title;
 
     /**
+     * @ORM\OneToOne(targetEntity="Dashboard\Entity\generos")
+     * @ORM\JoinColumn(name="genero_id",referencedColumnName="id")
+     */
+    protected $generoId;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -52,7 +58,7 @@ class album
     }
 
     /**
-     * @param mixed $artits
+     * @param $artist
      */
     public function setArtist($artist): void
     {
@@ -73,6 +79,22 @@ class album
     public function setTitle($title): void
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGeneroId()
+    {
+        return $this->generoId;
+    }
+
+    /**
+     * @param mixed $generoId
+     */
+    public function setGeneroId($generoId): void
+    {
+        $this->generoId = $generoId;
     }
 
 }

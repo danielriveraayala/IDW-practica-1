@@ -6,6 +6,7 @@ namespace Dashboard\Controller;
 
 
 use Dashboard\Entity\album;
+use Dashboard\Entity\generos;
 use Dashboard\Form\albumForm;
 use Doctrine\ORM\EntityManager;
 use Laminas\Mvc\Controller\AbstractActionController;
@@ -68,6 +69,9 @@ class AlbumController extends AbstractActionController
                 $album = new album();
                 $album->setArtist($data['artist']);
                 $album->setTitle($data['title']);
+                $album->setGeneroId(
+                    $this->entityManager->getRepository(generos::class)->findOneBy(['id' => $data['genero_id']])
+                );
                 $this->entityManager->persist($album);
                 $this->entityManager->flush();
                 if (is_null($album->getId())) {
@@ -101,7 +105,8 @@ class AlbumController extends AbstractActionController
             $this->redirect()->toRoute('dashboard/album');
         $data = [
             'artist' => $rowToEdit->getArtist(),
-            'title' => $rowToEdit->getTitle()
+            'title' => $rowToEdit->getTitle(),
+            'genero_id'=>$rowToEdit->getGeneroId()
         ];
         $albumForm->setData($data);
         if ($this->getRequest()->isPost()) {
@@ -110,6 +115,9 @@ class AlbumController extends AbstractActionController
             if ($albumForm->isValid()) {
                 $rowToEdit->setTitle($data['title']);
                 $rowToEdit->setArtist($data['artist']);
+                $rowToEdit->setGeneroId(
+                    $this->entityManager->getRepository(generos::class)->findOneBy(['id' => $data['genero_id']])
+                );
                 $this->entityManager->flush();
                 $this->flashMessenger()->addMessage('Canción agregada con exito!', FlashMessenger::NAMESPACE_SUCCESS);
                 $this->redirect()->refresh();

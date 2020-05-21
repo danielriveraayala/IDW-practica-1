@@ -27,6 +27,15 @@ echo $this->form()->openTag($form);
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <?= $this->formLabel($form->get('genero_id')) ?>
+                                <?= $this->formElement($form->get('genero_id')) ?>
+                                <small class="text-danger text-sm"><?= $this->formElementErrors($form->get('genero_id')) ?></small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <a href="<?= $this->url('dashboard/album') ?>" class="btn btn-secondary">Regresar</a>

@@ -19,6 +19,7 @@ $album = $this->album;
                 <th>ID</th>
                 <th>Artista</th>
                 <th>Titulo de la canción</th>
+                <th>Género</th>
                 <th></th>
             </tr>
             </thead>
@@ -28,6 +29,7 @@ $album = $this->album;
                     <td><?= ucwords($item->getId()) ?></td>
                     <td><?= ucwords($item->getArtist()) ?></td>
                     <td><?= ucwords($item->getTitle()) ?></td>
+                    <td><?= ucwords($item->getGeneroId()->getGenero()) ?></td>
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
