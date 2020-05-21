@@ -4,11 +4,12 @@
 namespace Dashboard\Controller\Factory;
 
 
-use Dashboard\albumForm;
 use Dashboard\Controller\AlbumController;
+use Dashboard\Form\albumForm;
 use Interop\Container\ContainerInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
-class AlbumControllerFactory implements \Laminas\ServiceManager\Factory\FactoryInterface
+class AlbumControllerFactory implements FactoryInterface
 {
 
     /**
@@ -18,8 +19,8 @@ class AlbumControllerFactory implements \Laminas\ServiceManager\Factory\FactoryI
     {
         $formElementManager = $container->get('FormElementManager');
         $albumForm = $formElementManager->get(albumForm::class);
-        $entityManager = $container->get('doctrine.entitymanager.orm_default');
         $editAlbumSession = $container->get('editAlbum');
-        return new AlbumController($entityManager, $albumForm, $editAlbumSession);
+        $entityManager = $container->get('doctrine.entitymanager.orm_default');
+        return new AlbumController($entityManager, $editAlbumSession, $albumForm);
     }
 }

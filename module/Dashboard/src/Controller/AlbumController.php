@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Dashboard\Controller;
 
 
-use Dashboard\albumForm;
 use Dashboard\Entity\album;
+use Dashboard\Form\albumForm;
 use Doctrine\ORM\EntityManager;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger;
@@ -38,7 +38,7 @@ class AlbumController extends AbstractActionController
      * @param           $entityManager
      * @param albumForm $albumForm
      */
-    public function __construct($entityManager, albumForm $albumForm, $editAlbumSession)
+    public function __construct($entityManager, $editAlbumSession, $albumForm)
     {
         $this->entityManager = $entityManager;
         $this->albumForm = $albumForm;
@@ -82,7 +82,6 @@ class AlbumController extends AbstractActionController
                 }
                 $this->redirect()->toRoute('dashboard/album');
             }
-            var_dump($data);
         }
         return new ViewModel(['form' => $this->albumForm->prepare()]);
     }
