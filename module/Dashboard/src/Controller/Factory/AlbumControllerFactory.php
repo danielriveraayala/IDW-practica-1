@@ -17,10 +17,8 @@ class AlbumControllerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $formElementManager = $container->get('FormElementManager');
-        $albumForm = $formElementManager->get(albumForm::class);
         $editAlbumSession = $container->get('editAlbum');
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
-        return new AlbumController($entityManager, $editAlbumSession, $albumForm);
+        return new AlbumController($entityManager, $editAlbumSession);
     }
 }

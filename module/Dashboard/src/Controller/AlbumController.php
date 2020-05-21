@@ -24,10 +24,6 @@ class AlbumController extends AbstractActionController
      */
     protected $entityManager;
     /**
-     * @var albumForm
-     */
-    protected $albumForm;
-    /**
      * @var
      */
     protected $editAlbumSession;
@@ -36,12 +32,11 @@ class AlbumController extends AbstractActionController
      * AlbumController constructor.
      *
      * @param           $entityManager
-     * @param albumForm $albumForm
+     * @param           $editAlbumSession
      */
-    public function __construct($entityManager, $editAlbumSession, $albumForm)
+    public function __construct($entityManager, $editAlbumSession)
     {
         $this->entityManager = $entityManager;
-        $this->albumForm = $albumForm;
         $this->editAlbumSession = $editAlbumSession;
     }
 
@@ -63,10 +58,11 @@ class AlbumController extends AbstractActionController
      */
     public function addAction()
     {
+        $albumForm = new albumForm($this->entityManager);
         if ($this->getRequest()->isPost()) {
             $data = $this->params()->fromPost();
-            $this->albumForm->setData($data);
-            if ($this->albumForm->isValid()) {
+            $albumForm->setData($data);
+            if ($albumForm->isValid()) {
                 $data = $this->params()->fromPost();
                 $this->entityManager->beginTransaction();
                 $album = new album();
@@ -83,7 +79,7 @@ class AlbumController extends AbstractActionController
                 $this->redirect()->toRoute('dashboard/album');
             }
         }
-        return new ViewModel(['form' => $this->albumForm->prepare()]);
+        return new ViewModel(['form' => $albumForm->prepare()]);
     }
 
     /**
@@ -95,7 +91,8 @@ class AlbumController extends AbstractActionController
             $this->editAlbumSession->id = $idToEdit;
             $this->redirect()->toRoute('dashboard/album', ['action' => 'edit']);
         }
-        $this->albumForm->get('submit')->setLabel('Actualizar');
+        $albumForm = new albumForm($this->entityManager);
+        $albumForm->get('submit')->setLabel('Actualizar');
         /**
          * @var album $rowToEdit
          */
@@ -106,11 +103,11 @@ class AlbumController extends AbstractActionController
             'artist' => $rowToEdit->getArtist(),
             'title' => $rowToEdit->getTitle()
         ];
-        $this->albumForm->setData($data);
+        $albumForm->setData($data);
         if ($this->getRequest()->isPost()) {
             $data = $this->params()->fromPost();
-            $this->albumForm->setData($data);
-            if ($this->albumForm->isValid()) {
+            $albumForm->setData($data);
+            if ($albumForm->isValid()) {
                 $rowToEdit->setTitle($data['title']);
                 $rowToEdit->setArtist($data['artist']);
                 $this->entityManager->flush();
@@ -119,7 +116,7 @@ class AlbumController extends AbstractActionController
             }
         }
 
-        return new ViewModel(['form' => $this->albumForm->prepare()]);
+        return new ViewModel(['form' => $albumForm->prepare()]);
     }
 
     /**

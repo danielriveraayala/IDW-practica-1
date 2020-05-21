@@ -15,10 +15,9 @@ class albumForm extends Form implements ObjectManagerAwareInterface
 {
     protected $objectManager;
 
-    public function __construct()
+    public function __construct($entityManager)
     {
-
-//        $this->setObjectManager($objectManager);
+        $this->setObjectManager($entityManager);
         parent::__construct('album-form');
         $this->setAttribute('action','post');
         $this->init();
