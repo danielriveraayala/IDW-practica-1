@@ -1,4 +1,4 @@
-# Ingeniería y Desarrollo en la Web
+# Maestría Dirección e Ingeniería de Sitios Web
 ## Instalación:
 `composer update | composer install`
 ## Ejecutar servidor (opcional)
