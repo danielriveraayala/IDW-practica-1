@@ -13,12 +13,12 @@ $album = $this->album;
     </div>
     <div class="card-body">
         <?= $this->flashMessenger()->render(FlashMessenger::NAMESPACE_SUCCESS,['alert','alert-success']); ?>
-        <table class="table">
+        <table class="table table-responsive-sm table-striped table-hover">
             <thead>
             <tr>
-                <th>ID</th>
+                <th class="d-none d-md-block">ID</th>
                 <th>Artista</th>
-                <th>Titulo de la canción</th>
+                <th>Titulo</th>
                 <th>Género</th>
                 <th></th>
             </tr>
@@ -26,7 +26,7 @@ $album = $this->album;
             <tbody>
             <?php foreach ($album as $item) { ?>
                 <tr>
-                    <td><?= ucwords($item->getId()) ?></td>
+                    <td class="d-none d-md-block"><?= ucwords($item->getId()) ?></td>
                     <td><?= ucwords($item->getArtist()) ?></td>
                     <td><?= ucwords($item->getTitle()) ?></td>
                     <td><?= ucwords($item->getGeneroId()->getGenero()) ?></td>

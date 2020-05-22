@@ -41,6 +41,10 @@ class AlbumController extends AbstractActionController
         $this->editAlbumSession = $editAlbumSession;
     }
 
+    public function infoAction()
+    {
+        return new ViewModel();
+    }
 
     /**
      * @return ViewModel
@@ -107,7 +111,7 @@ class AlbumController extends AbstractActionController
         $data = [
             'artist' => $rowToEdit->getArtist(),
             'title' => $rowToEdit->getTitle(),
-            'genero_id'=>$rowToEdit->getGeneroId()
+            'genero_id' => $rowToEdit->getGeneroId()
         ];
         $albumForm->setData($data);
         if ($this->getRequest()->isPost()) {

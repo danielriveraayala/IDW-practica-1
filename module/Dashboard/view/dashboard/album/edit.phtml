@@ -7,19 +7,19 @@ echo $this->form()->openTag($form);
         <div class="col-md-8">
             <div class="card card-outline card-primary">
                 <div class="card-header">
-                    <h4 class="card-title">Agregar nueva canción</h4>
+                    <h4 class="card-title">Editar canción</h4>
                 </div>
                 <div class="card-body">
                     <?= $this->flashMessenger()->render(FlashMessenger::NAMESPACE_SUCCESS,['alert','alert-success']); ?>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <?= $this->formLabel($form->get('artist')) ?>
                                 <?= $this->formElement($form->get('artist')) ?>
                                 <small class="text-danger text-sm"><?= $this->formElementErrors($form->get('artist')) ?></small>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <?= $this->formLabel($form->get('title')) ?>
                                 <?= $this->formElement($form->get('title')) ?>
@@ -28,7 +28,7 @@ echo $this->form()->openTag($form);
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <?= $this->formLabel($form->get('genero_id')) ?>
                                 <?= $this->formElement($form->get('genero_id')) ?>

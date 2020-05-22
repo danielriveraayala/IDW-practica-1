@@ -38,19 +38,30 @@ return [
         ],
         'dashboard' => [
             [
-                'label' => '<i class="fas nav-icon fa-music"></i> <p>Practica 1 (Album) <i class="right fas fa-angle-left"></i></p>',
+                'label' => 'Ing. Des. en la Web',
                 'route' => 'dashboard/album',
                 'pages' => [
                     [
-                        'label' => '<i class="fas nav-icon fa-list"></i> <p>Lista de albumes</p>',
+                        'label' => 'Practica 1',
                         'route' => 'dashboard/album',
-                        'action' => 'index'
+                        'pages' => [
+                            [
+                                'label' => 'Info. Practica 1',
+                                'route' => 'dashboard/album',
+                                'action' => 'info'
+                            ],
+                            [
+                                'label' => 'Lista de albumes',
+                                'route' => 'dashboard/album',
+                                'action' => 'index'
+                            ],
+                            [
+                                'label' => 'Agregar album',
+                                'route' => 'dashboard/album',
+                                'action' => 'add'
+                            ]
+                        ]
                     ],
-                    [
-                        'label' => '<i class="fas nav-icon fa-plus"></i> <p>Agregar album</p>',
-                        'route' => 'dashboard/album',
-                        'action' => 'add'
-                    ]
                 ]
             ],
         ]

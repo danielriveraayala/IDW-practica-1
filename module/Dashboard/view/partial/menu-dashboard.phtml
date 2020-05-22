@@ -15,45 +15,42 @@ foreach ($this->container as $page) {
             </a>
         </li>
     <?php } else { ?>
-        <?php
-        $active = false;
-        $hasTreeview = false;
-        $subChildActive = false;
-        foreach ($page->getPages() as $child) {
-            if ($child->isActive()) {
-                $active = true;
-            }
-            if ($child->hasPages()) {
-                foreach ($child->getPages() as $subChild) {
-                    if ($subChild->isActive()) {
-                        $active = true;
-                        $subChildActive = true;
-                    }
-                }
-            }
-        }
-        $disabled = ($active) ? true : false;
-        ?>
-        <li class="nav-item has-treeview <?= $active ? 'menu-open' : '' ?>">
-            <a href="#" class="nav-link <?= $active ? 'active' : '' ?>">
-                <?php echo $page->getLabel(); ?>
+        <li class="nav-item has-treeview <?= $page->isActive() ? ' menu-open ' : '' ?>">
+            <a href="#"
+               class="nav-link <?= $page->isActive() ? ' active ' : '' ?>">
+                <i class="nav-icon fas fa-circle"></i>
+                <p>
+                    <?php echo $page->getLabel(); ?>
+                    <i class="right fas fa-angle-left"></i>
+                </p>
             </a>
-            <ul class="nav nav-treeview" style="background-color: rgb(43,43,43); border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+            <ul class="nav nav-treeview">
                 <?php foreach ($page->getPages() as $child) { ?>
-                    <li class="nav-item">
-                        <a href="<?= $child->getHref(); ?>"
+                    <li class="nav-item <?= $child->hasPages() ? 'has-treeview' : '' ?> <?= $child->isActive() ? ' menu-open ' : '' ?>">
+                        <a href="<?= $child->hasPages() ? '#' : $child->getHref() ?>"
                            class="nav-link <?= $child->isActive() ? ' active ' : '' ?>">
-                            <?= $child->getLabel(); ?>
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                <?= $child->getLabel(); ?>
+                                <?php if ($child->hasPages()) { ?>
+                                    <i class="right fas fa-angle-left"></i>
+                                <?php } ?>
+                            </p>
                         </a>
+                        <?php if ($child->hasPages()) { ?>
+                            <ul class="nav nav-treeview">
+                                <?php foreach ($child->getPages() as $subChild) { ?>
+                                    <li class="nav-item">
+                                        <a href="<?= $subChild->getHref() ?>"
+                                           class="nav-link <?= $subChild->isActive() ? ' active-submenu ' : '' ?>">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p><?= $subChild->getLabel() ?></p>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        <?php } ?>
                     </li>
-                    <?php if ($child->hasPages() && $subChildActive) {
-                        echo '<li class="nav-item">';
-                        foreach ($child->getPages() as $subChild) {
-                            $subChildActive = $subChild->isActive() ? 'active' : '';
-                            echo '<a href="#" class="nav-link ' . $subChildActive . '">' . $subChild->getLabel() . '</p></a>';
-                        }
-                        echo '</li>';
-                    } ?>
                 <?php } ?>
             </ul>
         </li>

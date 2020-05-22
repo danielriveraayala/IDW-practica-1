@@ -10,14 +10,14 @@ echo $this->form()->openTag($form);
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <?= $this->formLabel($form->get('artist')) ?>
                                 <?= $this->formElement($form->get('artist')) ?>
                                 <small class="text-danger text-sm"><?= $this->formElementErrors($form->get('artist')) ?></small>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <?= $this->formLabel($form->get('title')) ?>
                                 <?= $this->formElement($form->get('title')) ?>
@@ -26,7 +26,7 @@ echo $this->form()->openTag($form);
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <?= $this->formLabel($form->get('genero_id')) ?>
                                 <?= $this->formElement($form->get('genero_id')) ?>
