@@ -42,16 +42,16 @@ return [
                 'route' => 'dashboard/album',
                 'pages' => [
                     [
-                        'label' => 'Practica 1',
+                        'label' => 'Práctica 1',
                         'route' => 'dashboard/album',
                         'pages' => [
                             [
-                                'label' => 'Info. Practica 1',
+                                'label' => 'Info.',
                                 'route' => 'dashboard/album',
                                 'action' => 'info'
                             ],
                             [
-                                'label' => 'Lista de albumes',
+                                'label' => 'Lista de álbumes',
                                 'route' => 'dashboard/album',
                                 'action' => 'index'
                             ],
