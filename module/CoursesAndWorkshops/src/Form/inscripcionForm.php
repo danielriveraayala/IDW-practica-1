@@ -173,7 +173,6 @@ class inscripcionForm extends \Laminas\Form\Form
             ],
         ]);
 
-//        6LdfWrwZAAAAALy5W-jeoAUmgddwj_dx0pS-Orpc
         parent::init();
     }
 }
