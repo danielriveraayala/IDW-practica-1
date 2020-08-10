@@ -1,0 +1,274 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+?>
+<?php
+$addNewCourseOrWorkshopForm = $this->addNewCourseOrWorkshopForm;
+?>
+<?= $this->form()->openTag($addNewCourseOrWorkshopForm); ?>
+<div class="card card-outline card-primary">
+    <div class="card-header">
+        <h3 class="card-title font-weight-bold">Publicar nuevo curso o taller</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('titulo')); ?>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('titulo')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('titulo')); ?></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('subtitulo')); ?>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('subtitulo')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('subtitulo')); ?></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <small class="text-muted">Formato de fecha: dia/mes/año y formato de Hora: 24Hrs</small>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('fecha_inicio')); ?>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('fecha_inicio')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('fecha_inicio')); ?></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('hora_inicio')); ?>
+                    <div class="input-group date" id="hora_inicio_" data-target-input="nearest">
+                        <?= $this->formElement($addNewCourseOrWorkshopForm->get('hora_inicio')); ?>
+                        <div class="input-group-append" data-target="#hora_inicio_" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="far fa-clock"></i></div>
+                        </div>
+                    </div>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('hora_inicio')); ?></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('fecha_termino')); ?>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('fecha_termino')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('fecha_inicio')); ?></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('hora_termino')); ?>
+                    <div class="input-group date" id="hora_termino_" data-target-input="nearest">
+                        <?= $this->formElement($addNewCourseOrWorkshopForm->get('hora_termino')); ?>
+                        <div class="input-group-append" data-target="#hora_termino_" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="far fa-clock"></i></div>
+                        </div>
+                    </div>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('hora_termino')); ?></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('num_min_integrantes')); ?>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('num_min_integrantes')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('num_min_integrantes')); ?></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('num_max_integrantes')); ?>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('num_max_integrantes')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('num_max_integrantes')); ?></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('cat_tipo_duracion_id')); ?>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('cat_tipo_duracion_id')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('cat_tipo_duracion_id')); ?></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('duracion')); ?>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('duracion')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('duracion')); ?></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('cat_tipo_registro_id')); ?>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('cat_tipo_registro_id')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('cat_tipo_registro_id')); ?></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('cat_modalidad_id')); ?>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('cat_modalidad_id')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('cat_modalidad_id')); ?></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('costo')); ?>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="costo">$</span>
+                        </div>
+                        <?= $this->formElement($addNewCourseOrWorkshopForm->get('costo')); ?>
+                    </div>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('costo')); ?></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('ponentes')); ?>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('ponentes')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('ponentes')); ?></small>
+                    </div>
+                    <small class="text-muted">En caso de ser mas de un ponente, escribir los nombres separados por
+                        comas.</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('domicilio')); ?>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('domicilio')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('domicilio')); ?></small>
+                    </div>
+                    <small class="text-muted">Lugar donde se impartira el curso o taller en caso de ser presencial o
+                        semipresencial.</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('contactos')); ?>
+                    <br/>
+                    <small class="text-muted">En caso de requerir un contacto adicional al correo oficial para cursos o
+                        talleres de ALMAC..</small>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('contactos')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('contactos')); ?></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('programa')); ?>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('programa')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('programa')); ?></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('convenio')); ?><br/>
+                    <small class="text-muted">Indique si el curso o taller es realizado en coolaboración con alguna
+                        institución o empresa externa a la asociación</small>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('convenio')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('convenio')); ?></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('palabras_clave')); ?><br/>
+                    <small class="text-muted">Escriba palabras clave para ayudar al publico a localizar este curso o
+                        taller. Escribirlas separadas con una coma (,)</small>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('palabras_clave')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('palabras_clave')); ?></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?= $this->formLabel($addNewCourseOrWorkshopForm->get('si_constancia')); ?>
+                    <?= $this->formElement($addNewCourseOrWorkshopForm->get('si_constancia')); ?>
+                    <div class="text-danger">
+                        <small><?= $this->formElementErrors($addNewCourseOrWorkshopForm->get('si_constancia')); ?></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="float-right w-xs-100">
+                    <div class="btn-group dropright">
+                        <?= $this->formElement($addNewCourseOrWorkshopForm->get('submit')); ?>
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropright</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <?= $this->formElement($addNewCourseOrWorkshopForm->get('post')); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?= $this->form()->closeTag($addNewCourseOrWorkshopForm); ?>
+<script type="text/javascript">
+    $(function () {
+        //Timepicker
+        $('#hora_inicio_,#hora_termino_').datetimepicker({
+            format: 'LT'
+        })
+    });
+</script>

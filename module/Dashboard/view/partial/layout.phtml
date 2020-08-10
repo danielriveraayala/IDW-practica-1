@@ -26,6 +26,8 @@
         ->appendStylesheet($this->basePath('plugins/daterangepicker/daterangepicker.css'))
         ->appendStylesheet($this->basePath('plugins/summernote/summernote-bs4.css'))
         ->appendStylesheet('//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700')
+        ->appendStylesheet('https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css')
+        ->appendStylesheet($this->basePath('css/toastr.css'))
     ?>
 
     <!-- Scripts -->
@@ -33,6 +35,19 @@
         ->appendFile($this->basePath('plugins/jquery/jquery.min.js'))
         ->appendFile($this->basePath('plugins/jquery-ui/jquery-ui.min.js'))
         ->appendFile($this->basePath('plugins/bootstrap/js/bootstrap.bundle.min.js'))
+        ->appendFile('https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js')
+        ->appendFile($this->basePath('js/toastr.min.js'))
+        ->appendFile($this->basePath('plugins/chart.js/Chart.min.js'))
+        ->appendFile($this->basePath('plugins/sparklines/sparkline.js'))
+        ->appendFile($this->basePath('plugins/jqvmap/jquery.vmap.min.js'))
+        ->appendFile($this->basePath('plugins/jqvmap/maps/jquery.vmap.usa.js'))
+        ->appendFile($this->basePath('plugins/jquery-knob/jquery.knob.min.js'))
+        ->appendFile($this->basePath('plugins/moment/moment.min.js'))
+        ->appendFile($this->basePath('plugins/daterangepicker/daterangepicker.js'))
+        ->appendFile($this->basePath('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js'))
+        ->appendFile($this->basePath('plugins/summernote/summernote-bs4.min.js'))
+        ->appendFile($this->basePath('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'))
+        ->appendFile($this->basePath('js/adminlte.js'))
     ?>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed pb-5">
@@ -77,19 +92,21 @@
     <aside class="control-sidebar control-sidebar-dark">
     </aside>
 </div>
-
+<?php
+$flashMessenger = $this->flashMessenger();
+if ($flashMessenger->hasMessages()) {
+    var_export('asd');
+    foreach ($flashMessenger->getMessages() as $message):
+        echo <<<EOT
+<script>
+toastr["{$message['icon']}"]("{$message['text']}", "{$message['title']}");
+</script>
+EOT;
+    endforeach;
+}
+?>
 <?= $this->inlineScript()
-    ->appendFile($this->basePath('plugins/chart.js/Chart.min.js'))
-    ->appendFile($this->basePath('plugins/sparklines/sparkline.js'))
-    ->appendFile($this->basePath('plugins/jqvmap/jquery.vmap.min.js'))
-    ->appendFile($this->basePath('plugins/jqvmap/maps/jquery.vmap.usa.js'))
-    ->appendFile($this->basePath('plugins/jquery-knob/jquery.knob.min.js'))
-    ->appendFile($this->basePath('plugins/moment/moment.min.js'))
-    ->appendFile($this->basePath('plugins/daterangepicker/daterangepicker.js'))
-    ->appendFile($this->basePath('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js'))
-    ->appendFile($this->basePath('plugins/summernote/summernote-bs4.min.js'))
-    ->appendFile($this->basePath('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'))
-    ->appendFile($this->basePath('js/adminlte.js'))
+
 ?>
 <script>
     $.widget.bridge('uibutton', $.ui.button)

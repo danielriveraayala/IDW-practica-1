@@ -26,6 +26,7 @@
         ->appendStylesheet($this->basePath('plugins/daterangepicker/daterangepicker.css'))
         ->appendStylesheet($this->basePath('plugins/summernote/summernote-bs4.css'))
         ->appendStylesheet('//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700')
+        ->appendStylesheet($this->basePath('css/toastr.css'))
     ?>
 
     <!-- Scripts -->
@@ -67,7 +68,19 @@
     ->appendFile($this->basePath('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js'))
     ->appendFile($this->basePath('plugins/summernote/summernote-bs4.min.js'))
     ->appendFile($this->basePath('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'))
-
+    ->appendFile($this->basePath('js/toastr.min.js'))
 ?>
+<script>
+    <?php
+    $flashMessenger = $this->flashMessenger();
+    if ($flashMessenger->hasMessages()):
+        foreach ($flashMessenger->getMessages() as $message):
+            echo <<<EOT
+            toastr["{$message['icon']}"]("{$message['text']}", "{$message['title']}");
+            EOT;
+        endforeach;
+    endif;
+    ?>
+</script>
 </body>
 </html>

@@ -35,6 +35,10 @@ return [
                 'label' => 'Dashboard',
                 'route' => 'dashboard'
             ],
+            [
+                'label' => 'Cursos y Talleres',
+                'route' => 'CoursesAndWorkshops'
+            ],
         ],
         'dashboard' => [
             [
@@ -60,6 +64,37 @@ return [
                                 'route' => 'dashboard/album',
                                 'action' => 'add'
                             ]
+                        ]
+                    ],
+                ]
+            ],
+            [
+                'label' => 'Formas de Pago',
+                'route' => 'coursesAndWorkshopsDashboardAccess/coursesAndWorkshops',
+                'pages' => [
+                    [
+                        'label' => 'Pasarela de pago',
+                        'route' => 'coursesAndWorkshopsDashboardAccess/coursesAndWorkshops',
+                        'pages' => [
+                            /* [
+                                 'label' => 'Cursos publicados',
+                                 'route' => 'CoursesAndWorkshops',
+                             ],*/
+                            [
+                                'label' => 'Agregar curso',
+                                'route' => 'coursesAndWorkshopsDashboardAccess/coursesAndWorkshops',
+                                'action' => 'registrationAndEditing'
+                            ],
+                            [
+                                'label' => 'Lista de cursos',
+                                'route' => 'coursesAndWorkshopsDashboardAccess/coursesAndWorkshops',
+                                'action' => 'listOfCoursesAndWorkshops'
+                            ],
+                            [
+                                'label' => 'Inscripciones',
+                                'route' => 'coursesAndWorkshopsDashboardAccess/coursesAndWorkshops',
+                                'action' => 'inscriptions'
+                            ],
                         ]
                     ],
                 ]

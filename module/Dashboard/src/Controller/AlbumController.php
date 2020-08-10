@@ -124,7 +124,7 @@ class AlbumController extends AbstractActionController
                     $this->entityManager->getRepository(generos::class)->findOneBy(['id' => $data['genero_id']])
                 );
                 $this->entityManager->flush();
-                $this->flashMessenger()->addMessage('Canción agregada con exito!', FlashMessenger::NAMESPACE_SUCCESS);
+                $this->flashMessenger()->addMessage('Canción actualizada con exito!', FlashMessenger::NAMESPACE_SUCCESS);
                 $this->redirect()->refresh();
             }
         }

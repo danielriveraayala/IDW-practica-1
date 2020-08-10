@@ -1,0 +1,64 @@
+<div class="card card-outline card-info">
+    <div class="card-header">
+        <h3 class="card-title">Inscripciones de cursos activos</h3>
+    </div>
+    <div class="card-body">
+        <?php
+
+            use Users\Entity\User;
+
+            foreach ($this->coursesAndWorkshops as $coursesAndWorkshop):
+                ?>
+                <div class="card collapsed-card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <?= $coursesAndWorkshop->getTitulo() ?> <?= !is_null($coursesAndWorkshop->getSubtitulo()) ? '<small class="text-muted">' . $coursesAndWorkshop->getSubtitulo() . '</small>' : ''; ?>
+                        </h3>
+                        <div class="card-tools">
+                                <span data-toggle="tooltip" title="3 New Messages"
+                                      class="badge bg-info"><?= $coursesAndWorkshop->getInscribed()->isEmpty() ? 0 : count($coursesAndWorkshop->getInscribed()); ?></span>
+                            <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
+                                        class="fas fa-expand"></i></button>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                        class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <?php if ($coursesAndWorkshop->getInscribed()->isEmpty()): ?>
+                            <div class="alert alert-info">
+                                <p class="text-uppercase text-center">Aún no hay inscritos</p>
+                            </div>
+                        <?php else: ?>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Nombre(s)</th>
+                                    <th>Primer Apellido</th>
+                                    <th>Segundo Apellido</th>
+                                    <th>CURP</th>
+                                    <?= $coursesAndWorkshop->getCosto() !== 0 ? '<th>Id de Orden</th>' : '' ?>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php /**@var $inscribed User */
+                                    foreach ($coursesAndWorkshop->getInscribed() as $inscribed): ?>
+                                        <tr>
+                                            <td><?= $inscribed->getNombres() ?></td>
+                                            <td><?= $inscribed->getPrimerApellido() ?></td>
+                                            <td><?= $inscribed->getSegundoApellido() ?></td>
+                                            <td><?= $inscribed->getCURP() ?></td>
+                                            <?= (int)$coursesAndWorkshop->getCosto() !== 0 ? '<td><a href="' . $this->url('coursesAndWorkshopsDashboardAccess/coursesAndWorkshops', ['action' => 'checkOrder','id'=>$inscribed->getOrderId()]) . '">' . $inscribed->getOrderId() . '</a></td>' : '' ?>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+    </div>
+</div>
+<script>
+    $("table").bootstrapTable();
+</script>

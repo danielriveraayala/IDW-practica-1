@@ -1,0 +1,56 @@
+<div class="card card-outline card-info">
+    <div class="card-header">
+        <h3 class="card-title">
+            Información de pedido en PayPal
+        </h3>
+    </div>
+    <div class="card-body p-0">
+        <table class="table-sm">
+            <thead>
+            <tr>
+                <th>Status</th>
+                <th>ID de Orden</th>
+                <th>ID de Curso Adquirido</th>
+                <th>Custom ID</th>
+                <th>Descripción Corta</th>
+                <th>Descripción Larga</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Email del comprador</th>
+                <th>ID del Comprador en PayPay</th>
+                <th>Moneda</th>
+                <th>Monto Pagado</th>
+                <th>Email del Vendedor</th>
+                <th>ID del Vendedor en PayPal</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><?= $this->paypalData['result_status'] ?></td>
+                <td><?= $this->paypalData['order_id'] ?></td>
+                <td><?= $this->paypalData['reference_id'] ?></td>
+                <td><?= $this->paypalData['custom_id'] ?></td>
+                <td><?= $this->paypalData['soft_descriptor'] ?></td>
+                <td><?= $this->paypalData['description'] ?></td>
+                <td><?= $this->paypalData['nombre'] ?></td>
+                <td><?= $this->paypalData['primer_apellido'] ?></td>
+                <td><?= $this->paypalData['payer_email'] ?></td>
+                <td><?= $this->paypalData['payer_id'] ?></td>
+                <td><?= $this->paypalData['currency_code'] ?></td>
+                <td>$<?= $this->paypalData['value'] ?></td>
+                <td><?= $this->paypalData['payee_email_address'] ?></td>
+                <td><?= $this->paypalData['payee_merchant_id'] ?></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="btn-group float-right">
+            <a href="<?= $this->url('coursesAndWorkshopsDashboardAccess/coursesAndWorkshops', ['action' => 'inscriptions']) ?>"
+               class="btn btn-secondary">Regresar</a>
+        </div>
+    </div>
+</div>
+<script>
+    $("table").bootstrapTable();
+</script>

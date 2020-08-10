@@ -29,4 +29,6 @@ return [
     'DoctrineORMModule',
     'Dashboard',
     'Application',
+    'CoursesAndWorkshops',
+    'Users',
 ];

@@ -1,0 +1,119 @@
+<?php /*** @var Laminas\View\Renderer\PhpRenderer $this */ ?>
+<style>
+    .main-header-area {
+        background-color: #1f294c !important;
+    }
+
+    .header-area {
+        position: inherit !important;
+    }
+</style>
+<?php
+$inscripcionesForm = $this->inscripcionesForm;
+?>
+<?= $this->form()->openTag($inscripcionesForm); ?>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title w-100">Ficha de inscripción</h3>
+            <small class="text-muted"><?= $this->aviso ?></small>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?= $this->formLabel($inscripcionesForm->get('nombre')); ?>
+                        <?= $this->formElement($inscripcionesForm->get('nombre')); ?>
+                        <div class="text-danger">
+                            <small><?= $this->formElementErrors($inscripcionesForm->get('nombre')); ?></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?= $this->formLabel($inscripcionesForm->get('primer_apellido')); ?>
+                        <?= $this->formElement($inscripcionesForm->get('primer_apellido')); ?>
+                        <div class="text-danger">
+                            <small><?= $this->formElementErrors($inscripcionesForm->get('primer_apellido')); ?></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?= $this->formLabel($inscripcionesForm->get('segundo_apellido')); ?>
+                        <?= $this->formElement($inscripcionesForm->get('segundo_apellido')); ?>
+                        <div class="text-danger">
+                            <small><?= $this->formElementErrors($inscripcionesForm->get('segundo_apellido')); ?></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?= $this->formLabel($inscripcionesForm->get('order_id')); ?>
+                        <?= $this->formElement($inscripcionesForm->get('order_id')); ?>
+                        <div class="text-danger">
+                            <small><?= $this->formElementErrors($inscripcionesForm->get('order_id')); ?></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <?= $this->formLabel($inscripcionesForm->get('email')); ?>
+                        <?= $this->formElement($inscripcionesForm->get('email')); ?>
+                        <div class="text-danger">
+                            <small><?= $this->formElementErrors($inscripcionesForm->get('email')); ?></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <?= $this->formLabel($inscripcionesForm->get('curp')); ?>
+                        <?= $this->formElement($inscripcionesForm->get('curp')); ?>
+                        <div class="text-danger">
+                            <small><?= $this->formElementErrors($inscripcionesForm->get('curp')); ?></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="card-text"><b>Curso:</b> <?= $this->escapeHtml($this->curso->getTitulo()) ?> <small
+                                class="text-muted"><?= $this->escapeHtml($this->curso->getSubtitulo()) ?></small></p>
+                    <p class="card-text"><b>Costo:</b> $<?= number_format($this->curso->getCosto(), 2) ?></p>
+                    <p class="card-text"><b>Fecha de inicio:</b> <?= $this->curso->getFechaInicio()->format('Y-m-d') ?>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="form-group float-right">
+                <?= $this->formElement($inscripcionesForm->get('payer_id')); ?>
+                <?= $this->formElement($inscripcionesForm->get('status_code')); ?>
+                <?= $this->formElement($inscripcionesForm->get('result_status')); ?>
+                <?= $this->formElement($inscripcionesForm->get('custom_id')); ?>
+                <?= $this->formElement($inscripcionesForm->get('soft_descriptor')); ?>
+                <?= $this->formElement($inscripcionesForm->get('reference_id')); ?>
+                <?= $this->formElement($inscripcionesForm->get('submit')); ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+//$this->headScript()->prependFile('https://www.google.com/recaptcha/api.js')
+?>
+<script>
+   /* function onSubmit(token) {
+        console.log(token);
+        document.getElementById("inscripciones-form").submit();
+    }*/
+</script>
+<!--
+Enlace a correo superior
+Justificar texto de los servicios
+Materia familiar checar texto
+justificar texto de por que nuestra cosultaria en pagina principal
+
+-->
+

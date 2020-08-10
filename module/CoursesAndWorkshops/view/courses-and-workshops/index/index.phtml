@@ -1,0 +1,61 @@
+<?php /**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */ ?>
+<?php
+
+use CoursesAndWorkshops\Entity\cursosYTalleres;
+
+$this->headTitle('Cursos y Talleres');
+$this->headMeta()
+    ->appendName('description', 'Tenemos una amplia oferta de cursos 100% prácticos, los que se encuentran registrados ante la Secretaría de Trabajo y Previsión Social, lo que implica que cada taller efectuado se otorga constancia con validez oficial, ya que nuestra firma cuenta con autorización como agente capacitador externo ante la propia secretaría.')
+?>
+    <style>
+        .main-header-area {
+            background-color: #1f294c !important;
+        }
+
+        .header-area {
+            position: inherit !important;
+        }
+    </style>
+<?php if ($this->coursesAndWorkshops): ?>
+    <div class="card-columns p-5 p-xsm-1 bg-white">
+        <?php
+        /**
+         * @var $item cursosYTalleres
+         */
+        foreach ($this->coursesAndWorkshops as $item):
+            ?>
+            <div class="card border-primary">
+                <div class="card-header">
+                    <h3 class="text-info card-title"><?= $item->getTitulo() ?></h3>
+                    <h6 class="card-title text-muted"><?= $item->getSubtitulo() ?></h6>
+                </div>
+                <div class="card-body">
+                    <p><?= substr($item->getIntroduccion(), 0, 200) ?>...</p>
+                </div>
+                <div class="card-footer">
+                    <p class="card-text w-100">
+                        <?php if (is_null($item->getLinkExterno())): ?>
+                            <a href="<?= $this->url('CoursesAndWorkshops/previewOfCoursesAndWorkshops', ['titulo' => str_replace(" ", "-", $item->getTitulo()), 'id' => $item->getId()], ['force_canonical' => false]) ?>"
+                               class="btn btn-primary btn-block btn-sm">Mas información</a>
+                        <?php else: ?>
+                            <a href="<?= $item->getLinkExterno() ?>"
+                               class="btn btn-primary btn-block btn-sm">Mas información</a>
+                        <?php endif; ?>
+                    </p>
+                </div>
+            </div>
+        <?php
+        endforeach;
+        ?>
+    </div>
+<?php else: ?>
+    <div class="card text-white border-0 rounded-0">
+        <img src="<?= $this->basePath('img/team.webp') ?>" class="card-img" alt="Equipo de abogados trabajando">
+        <div class="card-img-overlay" style="background: rgba(0,0,0,0.7)">
+            <h1 class="display-4 text-white">Cursos y Talleres</h1>
+            <p class="card-text text-white">Nuestro equipo de profesionales se encuentra en los ultimos preparativos para publicar los proximos cursos.</p>
+        </div>
+    </div>
+<?php endif; ?>

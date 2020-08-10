@@ -1,0 +1,99 @@
+<?php /**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ * @var                                   $coursesAndWorkshops cursosYTalleres
+ */ ?>
+<?php
+
+use CoursesAndWorkshops\Entity\cursosYTalleres;
+use Sample\PayPalClient;
+
+$coursesAndWorkshops = $this->coursesAndWorkshops;
+$this->headTitle($this->escapeHtml($coursesAndWorkshops->getTitulo()));
+$this->headMeta()
+    ->appendName('description', strip_tags($coursesAndWorkshops->getIntroduccion()))
+    ->appendName('keywords', $this->escapeHtml($coursesAndWorkshops->getPalabrasClave()));
+?>
+<style>
+    .main-header-area {
+        background-color: #1f294c !important;
+    }
+
+    .header-area {
+        position: inherit !important;
+    }
+</style>
+<div class="container mt-4">
+    <div class="card bg-gradient-light border-dark">
+        <div class="card-header">
+            <h3 class="card-title w-100"><?= $this->escapeHtml($coursesAndWorkshops->getTitulo()) ?></h3>
+            <?= !is_null($coursesAndWorkshops->getSubtitulo()) ? '<small class="w-100 text-muted">' . $this->escapeHtml($coursesAndWorkshops->getSubtitulo()) . '</small>' : null; ?>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <ul class="unordered-list">
+                        <?= !is_null($coursesAndWorkshops->getFechaInicio()) ? '<li><b>Fecha de inicio:</b> ' . $this->escapeHtml($coursesAndWorkshops->getFechaInicio()->format('Y-m-d')) . '</li>' : null; ?>
+                        <?= !is_null($coursesAndWorkshops->getHoraInicio()) ? '<li><b>Hora de termino</b> ' . $this->escapeHtml($coursesAndWorkshops->getHoraInicio()) . '</li>' : null; ?>
+                        <?= !is_null($coursesAndWorkshops->getFechaTermino()) ? '<li><b>Fecha de termino:</b> ' . $this->escapeHtml($coursesAndWorkshops->getFechaTermino()->format('Y-m-d')) . '</li>' : null; ?>
+                        <?= !is_null($coursesAndWorkshops->getHoraTermino()) ? '<li><b>Hora de termino</b> ' . $this->escapeHtml($coursesAndWorkshops->getHoraTermino()) . '</li>' : null; ?>
+                        <?= !is_null($coursesAndWorkshops->getCosto()) ? '<li><b>Costo:</b> $' . number_format((int)$coursesAndWorkshops->getCosto(), 2) . '</li>' : null; ?>
+                        <?= !is_null($coursesAndWorkshops->getSiConstancia()) && $coursesAndWorkshops->getSiConstancia() == 1 ? '<li><b>¿Se emitira constancia?</b> Si </li>' : '<li><b>¿Se emitira constancia?</b> No</li>' ?>
+                        <?= !is_null($coursesAndWorkshops->getDuracion()) && !is_null($coursesAndWorkshops->getCatTipoDuracionId()) ? '<li><b>Duración:</b> ' . $this->escapeHtml($coursesAndWorkshops->getDuracion()) . ' ' . $coursesAndWorkshops->getCatTipoDuracionId()->getDescripcionTipoDuracion() . '</li>' : null; ?>
+                        <?= !is_null($coursesAndWorkshops->getCatTipoRegistroId()) ? '<li><b>Tipo de registro:</b> ' . $this->escapeHtml($coursesAndWorkshops->getCatTipoRegistroId()->getDescripcionTipoRegistro()) . '</li>' : null; ?>
+                        <?= !is_null($coursesAndWorkshops->getCatModalidadId()) ? '<li><b>Modalidad</b> ' . $this->escapeHtml($coursesAndWorkshops->getCatModalidadId()->getDescripcionModalidad()) . '</li>' : null; ?>
+                        <?= !is_null($coursesAndWorkshops->getCatTipoCursoTallerId()) ? '<li><b>Tipo de actividad:</b> ' . $this->escapeHtml($coursesAndWorkshops->getCatTipoCursoTallerId()->getDescripcionTipoCursoTaller()) . '</li>' : null; ?>
+                        <?= !is_null($coursesAndWorkshops->getPonentes()) ? '<li><b>Ponentes:</b> ' . $this->escapeHtml($coursesAndWorkshops->getPonentes()) . '</li>' : null; ?>
+                        <?= !is_null($coursesAndWorkshops->getDirigidoA()) ? '<li><b>Dirigido a:</b> ' . $this->escapeHtml($coursesAndWorkshops->getDirigidoA()) . '</li>' : null; ?>
+                        <?= !is_null($coursesAndWorkshops->getDomicilio()) ? '<li><b>Domicilio:</b> ' . $this->escapeHtml($coursesAndWorkshops->getDomicilio()) . '</li>' : null; ?>
+                        <?= !is_null($coursesAndWorkshops->getPalabrasClave()) ? '<li><b>Palabras clave:</b> ' . $this->escapeHtml(ucwords(str_replace(',', ', ', $coursesAndWorkshops->getPalabrasClave()))) . '</li>' : null; ?>
+                    </ul>
+                </div>
+                <div class="col-md-8" id="program-content">
+                    <h3 class="card-title">Introducción:</h3>
+                    <?= $coursesAndWorkshops->getIntroduccion() ?>
+                    <hr class="my-4">
+                    <h3 class="card-title">Programa:</h3>
+                    <?= $coursesAndWorkshops->getPrograma() ?>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div id="paypal-button" class="float-right" style="width: 300px">
+                <?php if ($coursesAndWorkshops->getCosto() === 0): ?>
+                    <a class="btn btn-block btn-primary"
+                       href="<?= $this->url('CoursesAndWorkshops/freeCoursesAndWorkshops', ['id' => $coursesAndWorkshops->getId()]) ?>">Inscribirme</a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+if ($coursesAndWorkshops->getCosto() !== 0):
+    echo $this->headScript()->prependFile('https://www.paypal.com/sdk/js?client-id=' . PayPalClient::CLIENT_ID . '&currency=MXN');
+    $createOrderAction = $this->url('CoursesAndWorkshops/createOrderOfCoursesAndWorkshops', ['id' => $coursesAndWorkshops->getId()]);
+    $captureOrderAction = $this->url('CoursesAndWorkshops/captureOrderOfCoursesAndWorkshops');
+    echo <<<EOT
+<script>
+    //$("#paypal-button").html('');
+    paypal.Buttons({
+        createOrder: function() {
+            return fetch('{$createOrderAction}', {
+                method: 'post',
+                headers: {
+                    'content-type': 'application/json'
+                }
+            }).then(function(res) {
+                return res.json();
+            }).then(function(data) {
+                return data[0].result.id;
+            });
+        },
+        onApprove: function (data, actions) {
+            //toastr["success"]("Pago con Paypal", "Seras redirigido al formulario de inscripción.");
+            window.location.replace('{$captureOrderAction}/'+data.orderID);
+        },
+    }).render('#paypal-button');
+</script>
+EOT;
+endif;
+?>
