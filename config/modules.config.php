@@ -27,6 +27,7 @@ return [
     'Laminas\DeveloperTools',
     'DoctrineModule',
     'DoctrineORMModule',
+    'Laminas\ZendFrameworkBridge',
     'Dashboard',
     'Application',
     'CoursesAndWorkshops',
